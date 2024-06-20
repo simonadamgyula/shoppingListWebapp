@@ -3,12 +3,12 @@ import { Link, useFetcher, useLoaderData, useSubmit } from "@remix-run/react";
 import { getHouseholds, getUser } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
 import { LinksFunction } from "@remix-run/node";
-
-import indexStylesheet from "../css/index.css?url";
 import HouseholdCard from "~/components/HouseholdCard";
 import { useEffect, useRef, useState } from "react";
 import Context from "~/components/Context";
 import React from "react";
+
+import indexStylesheet from "../css/index.css?url";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: indexStylesheet }];
@@ -55,7 +55,19 @@ export default function Index() {
     return (
         <main>
             <h1 id="title">ShopMate</h1>
-            <h2 id="householdsHeader">Households</h2>
+            <div id="householdsHeader">
+                <h2 id="householdsHeaderTitle">Households</h2>
+                <svg
+                    id="addHousehold"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                    onClick={() => {
+                        window.location.href = "/household/add";
+                    }}
+                >
+                    <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                </svg>
+            </div>
             <div id="households">
                 {households ? (
                     households.map((household) => (

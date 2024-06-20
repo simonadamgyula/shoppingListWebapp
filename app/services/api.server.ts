@@ -90,3 +90,45 @@ export const getJoinCode = async (session_id: string, household_id: number): Pro
 
     return null;
 }
+
+export const joinHousehold = async (session_id: string, household_code: string): Promise<boolean> => {
+    try {
+        const response = await fetch(`http://${api_url}/household/join`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ session_id, household_code })
+        })
+
+        if (response.ok) {
+            return true;
+        }
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+
+    return false;
+}
+
+export const createHousehold = async (session_id: string, household_name: string): Promise<boolean> => {
+    try {
+        const response = await fetch(`http://${api_url}/household/new`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ session_id, name: household_name })
+        })
+
+        if (response.ok) {
+            return true;
+        }
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+
+    return false;
+}

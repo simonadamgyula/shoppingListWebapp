@@ -17,10 +17,23 @@ main {
 
 #householdsHeader {
     margin: 85px 0 0;
-    font-family: "Alfa Slab One", serif;
-    color: rgb(255, 255, 255);
-    font-size: 40px;
-    opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+
+    & #householdsHeaderTitle {
+        font-family: "Alfa Slab One", serif;
+        color: rgb(255, 255, 255);
+        font-size: 40px;
+        opacity: 0.7;
+    }
+
+    & #addHousehold {
+        height: 60px;
+        width: 30px;
+        fill: white;
+        cursor: pointer;
+        
+    }
 }
 
 #households {
