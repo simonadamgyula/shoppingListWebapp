@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Anek+Bangla:wght@100..800&display=swap');
+
+body {
+    background-color: #2F3C42;
+}
+
+main {
+    margin: 40px 55px;
+}
+
+#title {
+    font-size: 64px;
+    font-family: "Alfa Slab One", serif;
+    color: white;
+}
+
+#householdsHeader {
+    margin: 85px 0 0;
+    font-family: "Alfa Slab One", serif;
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    opacity: 0.7;
+}
+
+#households {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 70px;
+    margin: 10px 0;
+
+    & .household-card {
+        position: relative;
+        width: 350px;
+        height: 200px;
+        background-color: #efaf4f;
+        border-radius: 30px;
+
+        &>h3 {
+            font-family: "Andada Pro", serif;
+            font-size: 36px;
+            font-weight: 840;
+            color: white;
+            margin: 14px 0 0 22px;
+            text-transform: capitalize;
+        }
+
+        &>.householdContext {
+            position: absolute;
+            height: 35px;
+            bottom: 20px;
+            right: 25px;
+            fill: white;
+            padding: 5px;
+            box-sizing: content-box;
+
+            cursor: pointer;
+        }
+    }
+}
+
+#context {
+    position: absolute;
+    font-family: "Anek Bangla", sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #20292D;
+    padding: 0 25px;
+    border-radius: 20px;
+
+    & .separator {
+        display: inline-block;
+        height: 1px;
+        width: 200px;
+        background-color: rgba(255, 255, 255, 10%);
+    }
+
+    & span:not(.separator) {
+        display: flex;
+        flex-direction: row;
+        height: 80px;
+        line-height: 80px;
+        justify-content: center;
+        cursor: pointer;
+
+        &:hover {
+            color: rgba(255, 255, 255, 60%);
+
+            & svg {
+                fill: rgba(255, 255, 255, 60%);
+            }
+        }
+
+        &#contextEdit {
+            & svg {
+                width: 25px;
+            }
+        }
+
+        &#contextDelete {
+            color: #FF0404;
+
+            & svg {
+                width: 22px;
+                fill: #FF0404;
+            }
+
+            &:hover {
+                color: #ff0404bb;
+
+                & svg {
+                    width: 22px;
+                    fill: #ff0404bb;
+                }
+            }
+        }
+
+        &#contextCode {
+            & svg {
+                width: 25px;
+            }
+        }
+
+        & svg {
+            margin-right: 15px;
+            fill: white;
+        }
+    }
+}
