@@ -68,3 +68,25 @@ export const getHouseholds = async (session_id: string): Promise<Household[] | n
 
     return null;
 }
+
+export const getJoinCode = async (session_id: string, household_id: number): Promise<string | null> => {
+    try {
+        const response = await fetch(`http://${api_url}/household/new_code`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ session_id, household_id })
+        })
+
+        if (response.ok) {
+            const data = await response.json();
+            return data.code;
+        }
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+
+    return null;
+}

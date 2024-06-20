@@ -1,5 +1,5 @@
 import { json, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData, useSubmit } from "@remix-run/react";
+import { Link, useFetcher, useLoaderData, useSubmit } from "@remix-run/react";
 import { getHouseholds, getUser } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
 import { LinksFunction } from "@remix-run/node";
@@ -8,6 +8,7 @@ import indexStylesheet from "../css/index.css?url";
 import HouseholdCard from "~/components/HouseholdCard";
 import { useEffect, useRef, useState } from "react";
 import Context from "~/components/Context";
+import React from "react";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: indexStylesheet }];
@@ -40,18 +41,13 @@ export default function Index() {
     const contextRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        /**
-         * Alert if clicked on outside of element
-         */
         function handleClickOutside(event: MouseEvent) {
             if (contextRef.current && !contextRef.current.contains(event.target as Node)) {
                 setHouseholdContext(null);
             }
         }
-        // Bind the event listener
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
-            // Unbind the event listener on clean up
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [contextRef, setHouseholdContext]);
@@ -75,12 +71,12 @@ export default function Index() {
             ) : (
                 <Link to="/login" id="loginLink">Login</Link>
             )}
-            {householdContext && (
+            {householdContext ? (
                 <Context
                     contextRef={contextRef}
                     value={householdContext}
                 />
-            )}
+            ) : <React.Fragment></React.Fragment>}
         </main>
     );
 }
