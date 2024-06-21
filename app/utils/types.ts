@@ -14,3 +14,13 @@ interface Item {
     quantity: number,
     measurement: string,
 }
+
+interface NotAddedItem {
+    name: string,
+    id: string,
+}
+
+interface Section {
+    name: string,
+    items: NotAddedItem[]
+}

@@ -35,20 +35,49 @@ h1 {
         border-radius: 40px;
 
         & .subList {
+            margin-bottom: 20px;
+
             & .subListTitle {
                 display: flex;
                 justify-content: space-between;
+                cursor: pointer;
 
                 & h3 {
                     font-family: "Alfa Slab One", sans-serif;
                     font-size: 35px;
                     color: white;
+                    margin: 0;
                 }
 
                 & svg {
                     height: 47px;
                     fill: white;
                 }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        & .items {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 20px;
+            padding: 20px 10px;
+
+            & .item {
+                width: 180px;
+                height: 205px;
+                background-color: #00A894;
+                border-radius: 15px;
+                color: white;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
             }
         }
     }

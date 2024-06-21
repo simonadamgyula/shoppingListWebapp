@@ -6,6 +6,8 @@ import { authenticator } from "~/services/auth.server";
 
 import householdStylesheet from "../css/household.css?url";
 import SubList from "~/components/SubList";
+import Catalog from "~/components/Catalog";
+import { getCatalog } from "~/services/catalog.server";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: householdStylesheet }];
@@ -32,11 +34,13 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     const items: Item[] | null = await getItems(session.session_id, id);
     if (items === null) return redirect("/");
 
-    return { household, items };
+    const catalog = await getCatalog();
+
+    return { household, items, catalog };
 }
 
 export default function Household() {
-    const { household, items } = useLoaderData<typeof loader>();
+    const { household, items, catalog } = useLoaderData<typeof loader>();
 
     return (
         <main>
@@ -53,9 +57,7 @@ export default function Household() {
                         <div id="noItems">No items in this household</div>
                     )}
                 </div>
-                <div id="itemList">
-                    <SubList name="Fruits and vegetables" />
-                </div>
+                <Catalog catalog={catalog} />
             </div>
         </main>
     )
