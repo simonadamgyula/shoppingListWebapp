@@ -1,9 +1,9 @@
 import { ActionFunctionArgs, LinksFunction, LoaderFunctionArgs, MetaFunction, redirect } from "@remix-run/node";
+import { authenticator } from "~/services/auth.server";
+import { createHousehold } from "~/services/api.server";
+import invariant from "tiny-invariant";
 
 import householdAddStylesheet from "../css/householdAdd.css?url";
-import { authenticator } from "~/services/auth.server";
-import { createHousehold, joinHousehold } from "~/services/api.server";
-import invariant from "tiny-invariant";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: householdAddStylesheet }];

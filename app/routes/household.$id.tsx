@@ -1,8 +1,22 @@
-import { LoaderFunctionArgs, redirect } from "@remix-run/node"
+import { LinksFunction, LoaderFunctionArgs, MetaFunction, redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { getHousehold, getItems } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
+
+import householdStylesheet from "../css/household.css?url";
+import SubList from "~/components/SubList";
+
+export const links: LinksFunction = () => {
+    return [{ rel: "stylesheet", href: householdStylesheet }];
+};
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: "ShopMate" },
+        { name: "description", content: "Welcome to Remix!" },
+    ];
+};
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     const session = await authenticator.isAuthenticated(request, {
@@ -27,11 +41,22 @@ export default function Household() {
     return (
         <main>
             <h1>{household.name}</h1>
-            <ul>
-                {items.map((item, index) => (
-                    <li key={index}>{item.name}</li>
-                ))}
-            </ul>
+            <div id="items">
+                <h2>To buy</h2>
+                <div id="itemsInList">
+                    {items.length !== 0 ? (items.map((item, index) => (
+                        <div key={index} className="item">
+                            <span>{item.name}</span>
+                            <span>{item.quantity}</span>
+                        </div>
+                    ))) : (
+                        <div id="noItems">No items in this household</div>
+                    )}
+                </div>
+                <div id="itemList">
+                    <SubList name="Fruits and vegetables" />
+                </div>
+            </div>
         </main>
     )
 }

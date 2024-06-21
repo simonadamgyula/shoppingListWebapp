@@ -12,7 +12,7 @@ const sendRequest = async (url: string, method: string, body: any): Promise<any>
 
         if (response.ok) {
             const data = await response.json();
-            return data.session_id;
+            return data;
         }
     } catch (error) {
         console.error(error);

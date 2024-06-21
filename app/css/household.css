@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Anek+Bangla:wght@100..800&display=swap');
+
+body {
+    background-color: #2F3C42;
+}
+
+main {
+    margin: 50px 65px;
+}
+
+h1 {
+    font-size: 54px !important;
+    font-family: "Alfa Slab One", sans-serif;
+    color: rgba(255, 255, 255, 60%);
+}
+
+#items {
+    margin: 25px 37px;
+
+    & h2 {
+        font-size: 45px !important;
+        font-family: "Alfa Slab One", sans-serif;
+        color: rgba(255, 255, 255, 40%);
+    }
+
+    & #itemsInList {
+        display: flex;
+    }
+
+    & #itemList {
+        margin-top: 60px;
+        background-color: rgba(0, 0, 0, 20%);
+        padding: 50px;
+        border-radius: 40px;
+
+        & .subList {
+            & .subListTitle {
+                display: flex;
+                justify-content: space-between;
+
+                & h3 {
+                    font-family: "Alfa Slab One", sans-serif;
+                    font-size: 35px;
+                    color: white;
+                }
+
+                & svg {
+                    height: 47px;
+                    fill: white;
+                }
+            }
+        }
+    }
+}
