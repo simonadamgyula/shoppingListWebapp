@@ -10,6 +10,7 @@ import Catalog from "~/components/Catalog";
 import { getCatalog } from "~/services/catalog.server";
 import { useEffect, useRef, useState } from "react";
 import AddItemModal from "~/components/AddItemModal";
+import ListItem from "~/components/ListItem";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: householdStylesheet }];
@@ -66,10 +67,7 @@ export default function Household() {
                 <h2>To buy</h2>
                 <div id="itemsInList">
                     {items.length !== 0 ? (items.map((item, index) => (
-                        <div key={index} className="item">
-                            <span>{item.name}</span>
-                            <span>{item.quantity}</span>
-                        </div>
+                        <ListItem item={item} key={index} />
                     ))) : (
                         <div id="noItems">No items in this household</div>
                     )}

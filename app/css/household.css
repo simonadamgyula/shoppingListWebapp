@@ -32,9 +32,32 @@ h1 {
 
     & #itemsInList {
         display: flex;
+        gap: 10px;
 
         & #noItems {
             color: white;
+        }
+
+        & .item {
+            width: 140px;
+            height: 165px;
+            background-color: #00A894;
+            border-radius: 15px;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+            user-select: none;
+            -webkit-user-select: none;
+
+            & img {
+                height: 50%;
+            }
         }
     }
 
