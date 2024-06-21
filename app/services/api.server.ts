@@ -70,6 +70,7 @@ export const getHouseholds = async (session_id: string): Promise<Household[] | n
 }
 
 export const getJoinCode = async (session_id: string, household_id: number): Promise<string | null> => {
+    console.log("getJoinCode")
     try {
         const response = await fetch(`http://${api_url}/household/new_code`, {
             method: 'POST',
@@ -79,10 +80,15 @@ export const getJoinCode = async (session_id: string, household_id: number): Pro
             body: JSON.stringify({ session_id, household_id })
         })
 
+        console.log("getJoinCode response", response.ok)
+
         if (response.ok) {
             const data = await response.json();
+            console.log(data);
             return data.code;
         }
+
+        return null;
     } catch (error) {
         console.error(error);
         return null;
@@ -120,6 +126,27 @@ export const createHousehold = async (session_id: string, household_name: string
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ session_id, name: household_name })
+        })
+
+        if (response.ok) {
+            return true;
+        }
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+
+    return false;
+}
+
+export const leaveHousehold = async (session_id: string, household_id: number): Promise<boolean> => {
+    try {
+        const response = await fetch(`http://${api_url}/household/leave`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ session_id, household_id })
         })
 
         if (response.ok) {

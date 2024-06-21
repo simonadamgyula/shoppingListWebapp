@@ -28,30 +28,31 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
     const success = await createHousehold(session.session_id, joinCode);
 
-    return success ? redirect("/household") : redirect("/household/add")
+    return success ? redirect("/") : redirect("/household/add")
 }
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
     await authenticator.isAuthenticated(request, {
         failureRedirect: "/login",
     });
+
+    return null;
 }
 
 export default function AddHousehold() {
     return (
-        <main>
-            <h1 id="title">ShopMate</h1>
+        <div id="addHousehold">
+            <h1 id="title">Add a household</h1>
+            <h2>Create a new household</h2>
             <form id="addHouseholdForm" action="/household/add" method="post">
-                <label htmlFor="householdName">Household Name</label>
-                <input type="text" id="householdName" name="householdName" />
+                <input type="text" id="householdName" name="householdName" placeholder="Household name" />
                 <button type="submit">Create Household</button>
             </form>
-            <h2>Join</h2>
+            <h2>Join an existing household</h2>
             <form id="joinHouseholdForm" action="/household/join" method="post">
-                <label htmlFor="joinCode">Join Code</label>
-                <input type="text" id="joinCode" name="joinCode" />
+                <input type="text" id="joinCode" name="joinCode" placeholder="Join code" />
                 <button type="submit">Join Household</button>
             </form>
-        </main>
+        </div>
     )
 }

@@ -15,7 +15,7 @@ export const action = async ({ request }: LoaderFunctionArgs) => {
 
     const success = await joinHousehold(session.session_id, joinCode);
 
-    return success ? redirect("/household") : redirect("/household/add")
+    return success ? redirect("/") : redirect("/household/add")
 }
 
 export default function JoinHousehold() {

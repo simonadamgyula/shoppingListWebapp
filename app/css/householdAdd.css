@@ -1,0 +1,68 @@
+body {
+    background-color: #2F3C42;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+
+#addHousehold {
+    background-color: rgba(0, 0, 0, 20%);
+    display: flex;
+    flex-direction: column;
+
+    padding: 50px 80px 80px;
+    border-radius: 45px;
+
+    & #title {
+        text-align: center;
+        font-size: xx-large;
+        color: white;
+        font-weight: bold;
+    }
+
+    & h2 {
+        text-align: center;
+        font-size: x-large;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: bold;
+        margin: 50px 0 20px;
+    }
+
+    & form {
+        display: flex;
+        flex-direction: column;
+
+        & input {
+            background: rgba(0, 0, 0, 20%) !important;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: medium;
+            margin-bottom: 5px;
+        }
+
+        & button {
+            padding: 5px;
+            color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(0, 0, 0, 40%);
+            border-radius: 5px;
+            margin-top: 5px;
+            font-weight: bold;
+
+            &:hover {
+                color: rgba(255, 255, 255, 0.6);
+                background-color: rgba(0, 0, 0, 60%);
+            }
+        }
+    }
+}

@@ -32,7 +32,7 @@ main {
         width: 30px;
         fill: white;
         cursor: pointer;
-        
+
     }
 }
 
@@ -113,7 +113,7 @@ main {
             }
         }
 
-        &#contextDelete {
+        &#contextLeave {
             color: #FF0404;
 
             & svg {
