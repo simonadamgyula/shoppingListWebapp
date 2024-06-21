@@ -76,15 +76,15 @@
             },
             {
                 "name": "Fruit",
-                "id": "Früchte"
+                "id": "Fruechte"
             },
             {
                 "name": "Scallions",
-                "id": "Frühlingszwiebeln"
+                "id": "Fruehlingszwiebeln"
             },
             {
                 "name": "Vegetables",
-                "id": "Gemüse"
+                "id": "Gemuese"
             },
             {
                 "name": "Grapefruit",
@@ -136,11 +136,11 @@
             },
             {
                 "name": "Herbs",
-                "id": "Kräuter"
+                "id": "Kraeuter"
             },
             {
                 "name": "Squash",
-                "id": "Kürbis"
+                "id": "Kuerbis"
             },
             {
                 "name": "Lettuce",
@@ -292,11 +292,11 @@
             },
             {
                 "name": "Apples",
-                "id": "Äpfel"
+                "id": "Aepfel"
             },
             {
                 "name": "Sweet Potatoes",
-                "id": "Süsskartoffeln"
+                "id": "Suesskartoffeln"
             }
         ]
     },
@@ -313,7 +313,7 @@
             },
             {
                 "name": "Puff pastry",
-                "id": "Blätterteig"
+                "id": "Blaetterteig"
             },
             {
                 "name": "Bread",
@@ -325,7 +325,7 @@
             },
             {
                 "name": "Buns",
-                "id": "Brötchen"
+                "id": "Broetchen"
             },
             {
                 "name": "Donuts",
@@ -337,7 +337,7 @@
             },
             {
                 "name": "Crispbread",
-                "id": "Knäckebrot"
+                "id": "Knaeckebrot"
             },
             {
                 "name": "Muffins",
@@ -377,7 +377,7 @@
             },
             {
                 "name": "Pumpkin Pie",
-                "id": "Kürbiskuchen"
+                "id": "Kuerbiskuchen"
             },
             {
                 "name": "Dinner Rolls",
@@ -390,7 +390,7 @@
         "items": [
             {
                 "name": "Blue cheese",
-                "id": "Blauschimmelkäse"
+                "id": "Blauschimmelkaese"
             },
             {
                 "name": "Butter",
@@ -414,7 +414,7 @@
             },
             {
                 "name": "Cream cheese",
-                "id": "Frischkäse"
+                "id": "Frischkaese"
             },
             {
                 "name": "Gorgonzola",
@@ -422,7 +422,7 @@
             },
             {
                 "name": "Cottage cheese",
-                "id": "Hüttenkäse"
+                "id": "Huettenkaese"
             },
             {
                 "name": "Yogurt",
@@ -430,7 +430,7 @@
             },
             {
                 "name": "Cheese",
-                "id": "Käse"
+                "id": "Kaese"
             },
             {
                 "name": "Margarine",
@@ -462,7 +462,7 @@
             },
             {
                 "name": "Grated cheese",
-                "id": "Reibkäse"
+                "id": "Reibkaese"
             },
             {
                 "name": "Ricotta",
@@ -539,7 +539,7 @@
             },
             {
                 "name": "Chicken breast",
-                "id": "Pouletbrüstli"
+                "id": "Pouletbruestli"
             },
             {
                 "name": "Turkey breast",
@@ -595,7 +595,7 @@
             },
             {
                 "name": "Sausages",
-                "id": "Würste"
+                "id": "Wuerste"
             }
         ]
     },
@@ -624,7 +624,7 @@
             },
             {
                 "name": "Walnuts",
-                "id": "Baumnüsse"
+                "id": "Baumnuesse"
             },
             {
                 "name": "Baking soda",
@@ -660,7 +660,7 @@
             },
             {
                 "name": "Hazelnuts",
-                "id": "Haselnüsse"
+                "id": "Haselnuesse"
             },
             {
                 "name": "Yeast",
@@ -688,11 +688,11 @@
             },
             {
                 "name": "Nuts",
-                "id": "Nüsse"
+                "id": "Nuesse"
             },
             {
                 "name": "Olive oil",
-                "id": "Olivenöl"
+                "id": "Olivenoel"
             },
             {
                 "name": "Oregano",
@@ -716,7 +716,7 @@
             },
             {
                 "name": "Peppercorns",
-                "id": "Pfefferkörner"
+                "id": "Pfefferkoerner"
             },
             {
                 "name": "Black Pepper",
@@ -756,10 +756,10 @@
             },
             {
                 "name": "Cornflour",
-                "id": "Speisestärke"
+                "id": "Speisestaerke"
             },
             {
-                "name": "Tomato purée",
+                "name": "Tomato purÃ©e",
                 "id": "Tomatenmark"
             },
             {
@@ -780,7 +780,7 @@
             },
             {
                 "name": "Oil",
-                "id": "Öl"
+                "id": "Oel"
             },
             {
                 "name": "Cranberry Sauce",
@@ -817,15 +817,15 @@
             },
             {
                 "name": "Fish sticks",
-                "id": "Fischstäbli"
+                "id": "Fischstaebli"
             },
             {
                 "name": "Frozen vegetables",
-                "id": "Gemüse gefroren"
+                "id": "Gemuese gefroren"
             },
             {
                 "name": "Ice cream",
-                "id": "Glacé"
+                "id": "Glace"
             },
             {
                 "name": "Indian food",
@@ -837,7 +837,7 @@
             },
             {
                 "name": "Dumplings",
-                "id": "Knödel"
+                "id": "Knoedel"
             },
             {
                 "name": "Lasagna",
@@ -886,7 +886,7 @@
             },
             {
                 "name": "Cereal",
-                "id": "Frühstückszerealien"
+                "id": "Fruehstueckszerealien"
             },
             {
                 "name": "Semolina",
@@ -906,7 +906,7 @@
             },
             {
                 "name": "Muesli",
-                "id": "Müesli"
+                "id": "Mueesli"
             },
             {
                 "name": "Pasta",
@@ -959,11 +959,11 @@
             },
             {
                 "name": "Dried fruit",
-                "id": "Dörrobst"
+                "id": "Doerrobst"
             },
             {
                 "name": "Peanuts",
-                "id": "Erdnüsse"
+                "id": "Erdnuesse"
             },
             {
                 "name": "Jello",
@@ -991,11 +991,11 @@
             },
             {
                 "name": "Jam",
-                "id": "Konfitüre"
+                "id": "Konfituere"
             },
             {
                 "name": "Crackers",
-                "id": "Kräcker"
+                "id": "Kraecker"
             },
             {
                 "name": "Cake",
@@ -1031,7 +1031,7 @@
             },
             {
                 "name": "Candy",
-                "id": "Süssigkeiten"
+                "id": "Suessigkeiten"
             },
             {
                 "name": "Tortilla Chips",
@@ -1084,7 +1084,7 @@
             },
             {
                 "name": "Beverages",
-                "id": "Getränke"
+                "id": "Getraenke"
             },
             {
                 "name": "Gin",
@@ -1152,7 +1152,7 @@
             },
             {
                 "name": "Sports drink",
-                "id": "Sportgetränk"
+                "id": "Sportgetraenk"
             },
             {
                 "name": "Tea",
@@ -1189,7 +1189,7 @@
         "items": [
             {
                 "name": "Garbage bags",
-                "id": "Abfallsäcke"
+                "id": "Abfallsaecke"
             },
             {
                 "name": "Dishwashing liquid",
@@ -1245,7 +1245,7 @@
             },
             {
                 "name": "Light bulb",
-                "id": "Glühbirne"
+                "id": "Gluehbirne"
             },
             {
                 "name": "Paper towels",
@@ -1277,7 +1277,7 @@
             },
             {
                 "name": "Fabric softener",
-                "id": "Weichspüler"
+                "id": "Weichspueler"
             }
         ]
     },
@@ -1306,7 +1306,7 @@
             },
             {
                 "name": "Wet wipes",
-                "id": "Feuchttücher"
+                "id": "Feuchttuecher"
             },
             {
                 "name": "Face cream",
@@ -1334,7 +1334,7 @@
             },
             {
                 "name": "Facial tissues",
-                "id": "Kosmetiktücher"
+                "id": "Kosmetiktuecher"
             },
             {
                 "name": "Contact lens solution",
@@ -1350,7 +1350,7 @@
             },
             {
                 "name": "Mouthwash",
-                "id": "Mundspülung"
+                "id": "Mundspuelung"
             },
             {
                 "name": "Nail polish",
@@ -1398,7 +1398,7 @@
             },
             {
                 "name": "Tissues",
-                "id": "Taschentücher"
+                "id": "Taschentuecher"
             },
             {
                 "name": "Vitamins",
@@ -1414,7 +1414,7 @@
             },
             {
                 "name": "Cotton swabs",
-                "id": "Wattestäbchen"
+                "id": "Wattestaebchen"
             },
             {
                 "name": "Diapers",
@@ -1422,7 +1422,7 @@
             },
             {
                 "name": "Toothbrush",
-                "id": "Zahnbürsten"
+                "id": "Zahnbuersten"
             },
             {
                 "name": "Toothpaste",
@@ -1484,11 +1484,11 @@
             },
             {
                 "name": "Fertilizer",
-                "id": "Dünger"
+                "id": "Duenger"
             },
             {
                 "name": "Pots",
-                "id": "Töpfe"
+                "id": "Toepfe"
             },
             {
                 "name": "Garden tool",
@@ -1508,7 +1508,7 @@
             },
             {
                 "name": "Nails",
-                "id": "Nägel"
+                "id": "Naegel"
             },
             {
                 "name": "Bolts",
@@ -1528,7 +1528,7 @@
             },
             {
                 "name": "Lawnmower",
-                "id": "Rasenmäher"
+                "id": "Rasenmaeher"
             }
         ]
     }
