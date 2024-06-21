@@ -18,6 +18,7 @@ interface Item {
 interface NotAddedItem {
     name: string,
     id: string,
+    src?: string
 }
 
 interface Section {

@@ -950,10 +950,6 @@
                 "id": "Brezeln"
             },
             {
-                "name": "Bring!",
-                "id": "Bring!"
-            },
-            {
                 "name": "Dessert",
                 "id": "Dessert"
             },
@@ -1100,15 +1096,18 @@
             },
             {
                 "name": "Coffee beans",
-                "id": "Kaffeebohnen"
+                "id": "Kaffeebohnen",
+                "src": "https://web.getbring.com/assets/images/items/k.png"
             },
             {
                 "name": "Coffee pads",
-                "id": "Kaffeepads"
+                "id": "Kaffeepads",
+                "src": "https://web.getbring.com/assets/images/items/k.png"
             },
             {
                 "name": "Coffee capsules",
-                "id": "Kaffeekapseln"
+                "id": "Kaffeekapseln",
+                "src": "https://web.getbring.com/assets/images/items/k.png"
             },
             {
                 "name": "Hot chocolate",

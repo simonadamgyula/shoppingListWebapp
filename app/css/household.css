@@ -3,10 +3,14 @@
 
 body {
     background-color: #2F3C42;
+    overflow: hidden;
+    max-height: 100dvh;
 }
 
 main {
-    margin: 50px 65px;
+    padding: 50px 65px;
+    max-height: 100dvh;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -17,6 +21,8 @@ h1 {
 
 #items {
     margin: 25px 37px;
+    overflow: auto;
+    max-height: calc(100dvh - (81px + 50px + 25px));
 
     & h2 {
         font-size: 45px !important;
@@ -26,6 +32,10 @@ h1 {
 
     & #itemsInList {
         display: flex;
+
+        & #noItems {
+            color: white;
+        }
     }
 
     & #itemList {
@@ -44,7 +54,7 @@ h1 {
 
                 & h3 {
                     font-family: "Alfa Slab One", sans-serif;
-                    font-size: 35px;
+                    font-size: 25px;
                     color: white;
                     margin: 0;
                 }
@@ -64,21 +74,38 @@ h1 {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            gap: 20px;
+            gap: 10px;
             padding: 20px 10px;
+            justify-content: center;
+            position: relative;
 
             & .item {
-                width: 180px;
-                height: 205px;
+                width: 140px;
+                height: 165px;
                 background-color: #00A894;
                 border-radius: 15px;
                 color: white;
+                padding: 10px;
+                cursor: pointer;
 
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
                 align-items: center;
+
+                user-select: none;
+                -webkit-user-select: none;
+
+                & img {
+                    height: 50%;
+                }
             }
+        }
+    }
+
+    & {
+        &::-webkit-scrollbar {
+            width: 0px;
         }
     }
 }
