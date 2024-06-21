@@ -72,3 +72,8 @@ export const getItems = async (session_id: string, household_id: number): Promis
     if (!data) return data;
     return JSON.parse(data.items) as Item[];
 }
+
+export const addItem = async (session_id: string, household_id: number, item: Item): Promise<boolean> => {
+    const data = await sendRequest('/household/items/add', 'POST', { session_id, household_id, item });
+    return data;
+}

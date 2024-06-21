@@ -8,6 +8,8 @@ import householdStylesheet from "../css/household.css?url";
 import SubList from "~/components/SubList";
 import Catalog from "~/components/Catalog";
 import { getCatalog } from "~/services/catalog.server";
+import { useEffect, useRef, useState } from "react";
+import AddItemModal from "~/components/AddItemModal";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: householdStylesheet }];
@@ -42,6 +44,21 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 export default function Household() {
     const { household, items, catalog } = useLoaderData<typeof loader>();
 
+    const [modalItem, setModalItem] = useState<NotAddedItem | null>(null);
+    const modalRef = useRef<HTMLDivElement>();
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+                setModalItem(null);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [modalRef, setModalItem]);
+
     return (
         <main>
             <h1>{household.name}</h1>
@@ -57,8 +74,12 @@ export default function Household() {
                         <div id="noItems">No items in this household</div>
                     )}
                 </div>
-                <Catalog catalog={catalog} />
+                <Catalog catalog={catalog} setAddItem={setModalItem} />
             </div>
+
+            {modalItem && (
+                <AddItemModal modalRef={modalRef} item={modalItem} modalController={setModalItem} household={household} />
+            )}
         </main>
     )
 }

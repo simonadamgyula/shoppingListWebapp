@@ -109,3 +109,67 @@ h1 {
         }
     }
 }
+
+#addItemModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2F3C42;
+    padding: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: #000 0 0 20px 0;
+
+    & h2 {
+        color: rgba(255, 255, 255, 60%);
+        font-size: x-large;
+        font-family: "Alfa Slab One", sans-serif;
+        margin-bottom: 40px;
+
+        & span {
+            color: white;
+        }
+    }
+
+    & img {
+        height: 160px;
+        margin-bottom: 20px;
+    }
+
+    & input {
+        background-color: rgba(0, 0, 0, 30%);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        border: none;
+        outline: none;
+        color: white;
+    }
+
+    & .modalButtons {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+
+        & button {
+            padding: 10px;
+            width: 90px;
+            background-color: rgba(0, 0, 0, 30%);
+            color: white;
+            border-radius: 10px;
+            font-weight: bold;
+
+            &.cancel {
+                background: transparent;
+                outline: 4px solid rgba(0, 0, 0, 30%);
+                outline-offset: -4px;
+                color: rgba(255, 255, 255, 70%);
+            }
+        }
+    }
+}
