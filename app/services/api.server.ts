@@ -1,14 +1,13 @@
 const api_url: string = process.env.API_URL ?? 'http://localhost:8001';
 
-export const authenticate = async (username: string | null, password: string | null): Promise<string | null> => {
-    console.log(`${api_url}/user/authenticate`)
+const sendRequest = async (url: string, method: string, body: any): Promise<any> => {
     try {
-        const response = await fetch(`http://${api_url}/user/authenticate`, {
-            method: 'POST',
+        const response = await fetch(`http://${api_url}${url}`, {
+            method: method,
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify(body)
         })
 
         if (response.ok) {
@@ -23,139 +22,53 @@ export const authenticate = async (username: string | null, password: string | n
     return null;
 }
 
+export const authenticate = async (username: string | null, password: string | null): Promise<string | null> => {
+    const data = await sendRequest('/user/authenticate', 'POST', { username, password });
+    if (!data) return data;
+    return data.session_id;
+}
+
 export const getUser = async (session_id: string): Promise<{ username: string } | null> => {
-    try {
-        const response = await fetch(`http://${api_url}/user/get_username`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ session_id })
-        })
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-            return { username: data.username };
-        }
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
-
-    return null;
+    const data = await sendRequest('/user/get_username', 'POST', { session_id });
+    if (!data) return data;
+    return { username: data.username };
 }
 
 export const getHouseholds = async (session_id: string): Promise<Household[] | null> => {
-    try {
-        const response = await fetch(`http://${api_url}/household`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ session_id })
-        })
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-            return data.households;
-        }
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
-
-    return null;
+    const data = await sendRequest('/household', 'POST', { session_id });
+    if (!data) return data;
+    return data.households;
 }
 
 export const getJoinCode = async (session_id: string, household_id: number): Promise<string | null> => {
-    console.log("getJoinCode")
-    try {
-        const response = await fetch(`http://${api_url}/household/new_code`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ session_id, household_id })
-        })
-
-        console.log("getJoinCode response", response.ok)
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-            return data.code;
-        }
-
-        return null;
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
-
-    return null;
+    const data = await sendRequest('/household/new_code', 'POST', { session_id, household_id });
+    if (!data) return data;
+    return data.code;
 }
 
 export const joinHousehold = async (session_id: string, household_code: string): Promise<boolean> => {
-    try {
-        const response = await fetch(`http://${api_url}/household/join`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ session_id, household_code })
-        })
-
-        if (response.ok) {
-            return true;
-        }
-    } catch (error) {
-        console.error(error);
-        return false;
-    }
-
-    return false;
+    const data = await sendRequest('/household/join', 'POST', { session_id, household_code });
+    return data;
 }
 
 export const createHousehold = async (session_id: string, household_name: string): Promise<boolean> => {
-    try {
-        const response = await fetch(`http://${api_url}/household/new`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ session_id, name: household_name })
-        })
-
-        if (response.ok) {
-            return true;
-        }
-    } catch (error) {
-        console.error(error);
-        return false;
-    }
-
-    return false;
+    const data = await sendRequest('/household/new', 'POST', { session_id, household_name });
+    return data;
 }
 
 export const leaveHousehold = async (session_id: string, household_id: number): Promise<boolean> => {
-    try {
-        const response = await fetch(`http://${api_url}/household/leave`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ session_id, household_id })
-        })
+    const data = await sendRequest('/household/leave', 'POST', { session_id, household_id });
+    return data;
+}
 
-        if (response.ok) {
-            return true;
-        }
-    } catch (error) {
-        console.error(error);
-        return false;
-    }
+export const getHousehold = async (session_id: string, household_id: number): Promise<Household | null> => {
+    const data = await sendRequest('/household/get', 'POST', { session_id, household_id });
+    if (!data) return data;
+    return { name: data.household, id: household_id };
+}
 
-    return false;
+export const getItems = async (session_id: string, household_id: number): Promise<Item[] | null> => {
+    const data = await sendRequest('/household/items', 'POST', { session_id, household: household_id });
+    if (!data) return data;
+    return JSON.parse(data.items) as Item[];
 }

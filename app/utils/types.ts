@@ -8,3 +8,9 @@ interface ContextValue {
     x: number,
     y: number,
 }
+
+interface Item {
+    name: string,
+    quantity: number,
+    measurement: string,
+}
