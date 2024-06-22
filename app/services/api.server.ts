@@ -34,6 +34,11 @@ export const getUser = async (session_id: string): Promise<{ username: string } 
     return { username: data.username };
 }
 
+export const register = async (username: string, password: string, profile_picture: string): Promise<boolean> => {
+    const data = await sendRequest('/user/new', 'POST', { username, password, profile_picture });
+    return data;
+}
+
 export const getHouseholds = async (session_id: string): Promise<Household[] | null> => {
     const data = await sendRequest('/household', 'POST', { session_id });
     if (!data) return data;

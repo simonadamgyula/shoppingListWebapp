@@ -41,7 +41,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     const url = new URL(request.url);
     const query = url.searchParams.get("query");
 
-    const catalog = query ? await searchCatalog(query) : await getCatalog();
+    const catalog = query ? searchCatalog(query) : getCatalog();
 
     return { household, items, catalog };
 }
