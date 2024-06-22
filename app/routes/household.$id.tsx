@@ -1,5 +1,5 @@
 import { LinksFunction, LoaderFunctionArgs, MetaFunction, redirect } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useSearchParams } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { getHousehold, getItems } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
@@ -7,7 +7,7 @@ import { authenticator } from "~/services/auth.server";
 import householdStylesheet from "../css/household.css?url";
 import SubList from "~/components/SubList";
 import Catalog from "~/components/Catalog";
-import { getCatalog } from "~/services/catalog.server";
+import { getCatalog, searchCatalog } from "~/services/catalog.server";
 import { useEffect, useRef, useState } from "react";
 import AddItemModal from "~/components/AddItemModal";
 import ListItem from "~/components/ListItem";
@@ -37,7 +37,10 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     const items: Item[] | null = await getItems(session.session_id, id);
     if (items === null) return redirect("/");
 
-    const catalog = await getCatalog();
+    const url = new URL(request.url);
+    const query = url.searchParams.get("query");
+
+    const catalog = query ? await searchCatalog(query) : await getCatalog();
 
     return { household, items, catalog };
 }
@@ -46,7 +49,7 @@ export default function Household() {
     const { household, items, catalog } = useLoaderData<typeof loader>();
 
     const [modalItem, setModalItem] = useState<NotAddedItem | null>(null);
-    const modalRef = useRef<HTMLDivElement>();
+    const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
