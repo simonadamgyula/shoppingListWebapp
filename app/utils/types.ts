@@ -13,6 +13,7 @@ interface Item {
     name: string,
     quantity: number,
     measurement: string,
+    image: string,
     bought?: boolean,
 }
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Item from "./Item";
 
-export default function SubList({ name, items, setAddItem, index }: { name: string, items: NotAddedItem[], setAddItem: (item: NotAddedItem) => void, index: number }) {
+export default function SubList({ name, items, setAddItem }: { name: string, items: NotAddedItem[], setAddItem: (item: NotAddedItem) => void }) {
     const [open, setOpen] = useState<boolean>(false);
 
     return (

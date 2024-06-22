@@ -38,7 +38,7 @@ export default function Catalog({ catalog, setAddItem }: { catalog: Section[], s
                 />
             </div>
             {catalog.map((section, index) => {
-                return <SubList index={index} key={index} name={section.name} items={section.items} setAddItem={setAddItem} />;
+                return <SubList key={index} name={section.name} items={section.items} setAddItem={setAddItem} />;
             })}
             {otherItem &&
                 <Item setAddItem={setAddItem} item={otherItem} />

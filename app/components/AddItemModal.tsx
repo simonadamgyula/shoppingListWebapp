@@ -22,9 +22,11 @@ export default function AddItemModal({ modalRef, item, household, modalControlle
                             const formData = new FormData();
                             formData.set("quantity", quantityRef.current.value);
                             formData.set("item", item.name);
+                            formData.set("image", image_src);
+
                             submit(formData, {
                                 method: "post",
-                                action: `/household/${household.id}/add_item`,
+                                action: `/household/${household.id}/items/add`,
                                 navigate: false,
                                 unstable_flushSync: true,
                             });

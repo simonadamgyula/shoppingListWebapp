@@ -44,7 +44,7 @@ export default function Context({ value, contextRef }: { value: ContextValue, co
 
                     const formData = new FormData();
                     codeFetcher.submit(formData, {
-                        action: `/household/${value.household.id}/join-code`,
+                        action: `/household/${value.household.id}/join_code`,
                         method: "post",
                     })
                 }}

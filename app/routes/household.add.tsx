@@ -4,6 +4,7 @@ import { createHousehold } from "~/services/api.server";
 import invariant from "tiny-invariant";
 
 import householdAddStylesheet from "../css/householdAdd.css?url";
+import { useLoaderData } from "@remix-run/react";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: householdAddStylesheet }];
@@ -40,6 +41,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 }
 
 export default function AddHousehold() {
+    useLoaderData();
+
     return (
         <div id="addHousehold">
             <h1 id="title">Add a household</h1>

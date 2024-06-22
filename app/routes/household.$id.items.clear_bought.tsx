@@ -12,7 +12,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
     const items = await getItems(session.session_id, parseInt(params.id));
 
     const response = items?.every(async (item) => {
-        if (!params.id) return;
+        if (!params.id || !item.bought) return;
         return await removeItem(session.session_id, parseInt(params.id), item);
     });
 

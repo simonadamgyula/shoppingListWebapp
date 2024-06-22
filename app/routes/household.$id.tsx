@@ -1,5 +1,5 @@
 import { LinksFunction, LoaderFunctionArgs, MetaFunction, redirect } from "@remix-run/node"
-import { useLoaderData, useSearchParams, useSubmit } from "@remix-run/react";
+import { useFetcher, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { getHousehold, getItems } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
@@ -10,9 +10,8 @@ import { getCatalog, searchCatalog } from "~/services/catalog.server";
 import { useEffect, useRef, useState } from "react";
 import AddItemModal from "~/components/AddItemModal";
 import ListItem from "~/components/ListItem";
-import { flushSync } from "react-dom";
-import { s } from "node_modules/vite/dist/node/types.d-aGj9QkWt";
 import React from "react";
+import { flushSync } from "react-dom";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: householdStylesheet }];
@@ -50,8 +49,9 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 export default function Household() {
     const { household, items, catalog } = useLoaderData<typeof loader>();
 
-    const submit = useSubmit();
     const [areBoughtItems, setAreBoughtItems] = useState(false);
+    const addItemFetcher = useFetcher({ key: `addItem-${household.id}` });
+    const forceHide = addItemFetcher.state === "loading" || addItemFetcher.state === "submitting";
 
     const [modalItem, setModalItem] = useState<NotAddedItem | null>(null);
     const modalRef = useRef<HTMLDivElement>(null);
@@ -68,7 +68,6 @@ export default function Household() {
         };
     }, [modalRef, setModalItem]);
 
-
     return (
         <main>
             <h1>{household.name}</h1>
@@ -77,10 +76,10 @@ export default function Household() {
                 <div id="itemsInList">
                     {items.length !== 0 ? (items.map((item, index) => {
                         if (item.bought) {
-                            setAreBoughtItems(true);
+                            if (!areBoughtItems && !forceHide) setAreBoughtItems(true);
                             return null;
                         }
-                        return <ListItem item={item} key={index} />
+                        return <ListItem item={item} key={index} household={household} />
                     })) : (
                         <div id="noItems">No items in this household</div>
                     )}
@@ -93,14 +92,11 @@ export default function Household() {
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 512 512"
                                 onClick={() => {
-                                    flushSync(() => {
-                                        submit(new FormData(), {
-                                            method: "post",
-                                            action: `/household/${household.id}/clear_bought`,
-                                            navigate: false,
-                                            unstable_flushSync: true,
-                                        });
-                                    })
+                                    addItemFetcher.submit(new FormData(), {
+                                        method: "post",
+                                        action: `/household/${household.id}/items/clear_bought`,
+                                        navigate: false
+                                    });
                                     setAreBoughtItems(false);
                                 }}
                             >
@@ -112,9 +108,9 @@ export default function Household() {
                                 if (!item.bought) {
                                     return null;
                                 }
-                                return <ListItem item={item} key={index} />
+                                return <ListItem item={item} key={index} household={household} />
                             })) : (
-                                <div id="noItems">No items in this household</div>
+                                <div id="noItems">No items you bought</div>
                             )}
                         </div>
                     </React.Fragment>
