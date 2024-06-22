@@ -1,5 +1,5 @@
 import { useSubmit } from "@remix-run/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AddItemModal({ modalRef, item, household, modalController }: { modalRef: React.RefObject<HTMLDivElement>, item: NotAddedItem, household: Household, modalController: (item: NotAddedItem | null) => void }) {
     const image_src = item.src || `https://web.getbring.com/assets/images/items/${item.id.toLowerCase().replaceAll(/( |-)/g, "_")}.png`;
@@ -10,7 +10,10 @@ export default function AddItemModal({ modalRef, item, household, modalControlle
     return (
         <div id="addItemModal" ref={modalRef}>
             <h2>Add <span className="addItemItem">{item.name}</span> to shopping list</h2>
-            <img src={image_src} alt={item.name} />
+            <img
+                src={image_src}
+                alt={item.name}
+            />
             <input ref={quantityRef} type="text" placeholder="Quantity" />
             <div className="modalButtons">
                 <button

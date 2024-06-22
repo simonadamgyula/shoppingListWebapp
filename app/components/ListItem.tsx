@@ -3,7 +3,7 @@ export default function ListItem({ item }: { item: Item }) {
 
     return (
         <div
-            className="item"
+            className={`item ${item.bought ? "bought" : ""}`}
         >
             <img src={image_src} alt={item.name} />
             <div className="item-name">{item.name}</div>

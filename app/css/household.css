@@ -31,6 +31,26 @@ h1 {
         color: rgba(255, 255, 255, 40%);
     }
 
+    .boughtTitle {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        margin: 20px 0 10px;
+
+        & h3 {
+            font-family: "Alfa Slab One", sans-serif;
+            font-size: 25px;
+            color: rgba(255, 255, 255, 30%);
+            margin: 0;
+        }
+
+        & svg {
+            height: 20px;
+            fill: rgba(255, 255, 255);
+            cursor: pointer;
+        }
+    }
+
     & #itemsInList {
         display: flex;
         gap: 10px;
@@ -58,6 +78,11 @@ h1 {
 
             & img {
                 height: 50%;
+            }
+
+            &.bought {
+                background-color: #ddb135;
+
             }
         }
     }
@@ -189,7 +214,7 @@ h1 {
         }
     }
 
-    & img {
+    &>img {
         height: 160px;
         margin-bottom: 20px;
     }

@@ -12,7 +12,8 @@ export default function Catalog({ catalog, setAddItem }: { catalog: Section[], s
     const otherItem = query && {
         name: query,
         id: query.toLowerCase().replaceAll(/( |-)/g, "_"),
-        src: `https://web.getbring.com/assets/images/items/${query.toLowerCase()[0]}.png`
+        src: `https://web.getbring.com/assets/images/items/${query.toLowerCase()[0]}.png`,
+        other: true
     };
 
     return (

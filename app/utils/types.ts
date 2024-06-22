@@ -13,12 +13,14 @@ interface Item {
     name: string,
     quantity: number,
     measurement: string,
+    bought?: boolean,
 }
 
 interface NotAddedItem {
     name: string,
     id: string,
-    src?: string
+    src?: string,
+    other?: boolean
 }
 
 interface Section {

@@ -77,3 +77,8 @@ export const addItem = async (session_id: string, household_id: number, item: It
     const data = await sendRequest('/household/items/add', 'POST', { session_id, household_id, item });
     return data;
 }
+
+export const removeItem = async (session_id: string, household_id: number, item: Item): Promise<boolean> => {
+    const data = await sendRequest('/household/items/remove', 'POST', { session_id, household_id, item: item.name });
+    return data;
+}
