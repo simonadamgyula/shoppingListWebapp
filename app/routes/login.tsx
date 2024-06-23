@@ -18,8 +18,6 @@ export async function action({ request }: ActionFunctionArgs) {
     let session = await getSession(request.headers.get("cookie"));
     session.set(authenticator.sessionKey, user);
 
-    console.log(user);
-
     let headers = new Headers({ "Set-Cookie": await commitSession(session) });
     return redirect("/", { headers });
 };

@@ -28,10 +28,9 @@ export const authenticate = async (username: string | null, password: string | n
     return data.session_id;
 }
 
-export const getUser = async (session_id: string): Promise<{ username: string } | null> => {
-    const data = await sendRequest('/user/get_username', 'POST', { session_id });
-    if (!data) return data;
-    return { username: data.username };
+export const getUser = async (session_id: string): Promise<{ username: string, profile_picture: string } | null> => {
+    const data = await sendRequest('/user/get_user', 'POST', { session_id });
+    return data;
 }
 
 export const register = async (username: string, password: string, profile_picture: string): Promise<boolean> => {

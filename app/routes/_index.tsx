@@ -83,6 +83,8 @@ export default function Index() {
             ) : (
                 <Link to="/login" id="loginLink">Login</Link>
             )}
+            <p>{user?.username}</p>
+            <img src={user?.profile_picture} alt="" />
             {householdContext ? (
                 <Context
                     contextRef={contextRef}
