@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Anek+Bangla:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body {
     background-color: #2F3C42;
@@ -54,12 +55,13 @@ main {
         justify-content: space-between;
 
         &>h3 {
-            font-family: "Andada Pro", serif;
+            font-family: "Courier Prime", sans-serif;
             font-size: 36px;
             font-weight: 840;
             color: white;
-            margin: 14px 0 0 22px;
+            margin: 14px 22px 0 22px;
             text-transform: capitalize;
+            line-break: anywhere;
         }
 
         &>.householdMembers {

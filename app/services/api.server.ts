@@ -28,7 +28,7 @@ export const authenticate = async (username: string | null, password: string | n
     return data.session_id;
 }
 
-export const getUser = async (session_id: string): Promise<{ username: string, profile_picture: string } | null> => {
+export const getUser = async (session_id: string): Promise<User | null> => {
     const data = await sendRequest('/user/get_user', 'POST', { session_id });
     return data;
 }
@@ -106,5 +106,15 @@ export const checkHouseholdAdmin = async (session_id: string, household_id: numb
 
 export const editHousehold = async (session_id: string, household_id: number, name: string, color: number): Promise<boolean> => {
     const data = await sendRequest('/household/update', 'POST', { session_id, household_id, new_name: name, new_color: color });
+    return data;
+}
+
+export const setPermission = async (session_id: string, household_id: number, user_id: string, permissions: string): Promise<boolean> => {
+    const data = await sendRequest('/household/set_permissions', 'POST', { session_id, household_id, user_id, permissions });
+    return data;
+}
+
+export const kickMember = async (session_id: string, household_id: number, user_id: string): Promise<boolean> => {
+    const data = await sendRequest('/household/kick_member', 'POST', { session_id, household_id, user_id });
     return data;
 }

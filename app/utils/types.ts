@@ -2,7 +2,7 @@ interface Household {
     id: number,
     name: string,
     color: number,
-    members?: User[],
+    members?: User[] | null,
 }
 
 interface ContextValue {
@@ -32,6 +32,8 @@ interface Section {
 }
 
 interface User {
+    id: string,
     username: string,
-    profile_picture: string
+    profile_picture: string,
+    permission?: string
 }

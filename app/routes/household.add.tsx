@@ -58,7 +58,7 @@ export default function AddHousehold() {
             <h1 id="title">Add a household</h1>
             <h2>Create a new household</h2>
             <form id="addHouseholdForm" action="/household/add" method="post">
-                <input type="text" id="householdName" name="householdName" placeholder="Household name" />
+                <input type="text" id="householdName" name="householdName" placeholder="Household name" maxLength={26} />
                 <input
                     ref={colorSliderRef}
                     type="range"

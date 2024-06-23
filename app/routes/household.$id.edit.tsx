@@ -1,5 +1,5 @@
 import { LinksFunction, LoaderFunctionArgs, MetaFunction, json, redirect } from "@remix-run/node";
-import { useLoaderData, useSubmit } from "@remix-run/react";
+import { Link, useLoaderData, useSubmit } from "@remix-run/react";
 import { useRef } from "react";
 import invariant from "tiny-invariant";
 import { checkHouseholdAdmin, editHousehold, getHousehold, getHouseholdUsers, getUser } from "~/services/api.server";
@@ -67,9 +67,14 @@ export default function EditHousehold() {
 
     return (
         <main>
+            <Link className="backArrow" to={"/"}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                    <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                </svg>
+            </Link>
             <h1>Edit Household</h1>
             <label htmlFor="name">Name: </label>
-            <input ref={nameRef} type="text" name="name" id="name" defaultValue={household.name} />
+            <input ref={nameRef} type="text" name="name" id="name" maxLength={26} defaultValue={household.name} />
             <label htmlFor="colorSlider">Color: </label>
             <input
                 ref={colorSliderRef}
@@ -93,8 +98,16 @@ export default function EditHousehold() {
                                 <select
                                     name="permission"
                                     id={`permission${index}`}
-                                    onChange={() => {
-                                        console.log("change")
+                                    onChange={(e) => {
+                                        const formData = new FormData();
+                                        formData.set("user_id", member.id);
+                                        formData.set("permissions", e.target.value);
+                                        submit(formData, {
+                                            method: "post",
+                                            action: `/household/${household.id}/set_permission`,
+                                            navigate: false,
+                                            unstable_flushSync: true,
+                                        })
                                     }}
                                 >
                                     <option value="member">Member</option>
@@ -103,7 +116,14 @@ export default function EditHousehold() {
                             </div>
                             <button
                                 onClick={() => {
-                                    console.log("kick")
+                                    const formData = new FormData();
+                                    formData.set("user_id", member.id);
+                                    submit(formData, {
+                                        method: "post",
+                                        action: `/household/${household.id}/kick`,
+                                        navigate: false,
+                                        unstable_flushSync: true,
+                                    })
                                 }}
                             >
                                 Kick

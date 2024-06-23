@@ -36,12 +36,15 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     const user = await getUser(auth.session_id);
     const households = await getHouseholds(auth.session_id);
     console.log(households);
-    const householdWithMemberss = await Promise.all(households!.map(async (household) => {
-        const members = await getHouseholdUsers(auth.session_id, household.id);
-        return { ...household, members };
-    }));
+    let householdWithMembers: Household[] = [];
+    if (households) {
+        householdWithMembers = await Promise.all(households.map(async (household) => {
+            const members = await getHouseholdUsers(auth.session_id, household.id);
+            return { ...household, members };
+        }));
+    }
 
-    return json({ user, households: householdWithMemberss });
+    return json({ user, households: householdWithMembers });
 }
 
 export default function Index() {

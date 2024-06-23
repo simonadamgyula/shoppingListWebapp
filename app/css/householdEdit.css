@@ -9,6 +9,18 @@ body {
     align-items: center;
 }
 
+.backArrow {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    cursor: pointer;
+
+    & svg {
+        height: 30px;
+        fill: white;
+    }
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -23,6 +35,8 @@ main {
 
     padding: 50px 80px 80px;
     border-radius: 45px;
+
+    width: 500px;
 
     & h1 {
         text-align: center;
@@ -52,7 +66,7 @@ main {
     h2 {
         color: white;
         font-size: x-large;
-        margin: 15px 0 10px 0;
+        margin: 15px 0 0;
     }
 
     & #members {
@@ -136,7 +150,7 @@ main {
     width: 100%;
     height: 4px;
     border-radius: 4px;
-    background: linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+    background: linear-gradient(to right, hsl(0, 83%, 62%) 0%, hsl(60, 83%, 62%) 17%, hsl(120, 83%, 62%) 33%, hsl(180, 83%, 62%) 50%, hsl(240, 83%, 62%) 67%, hsl(300, 83%, 62%) 83%, hsl(0, 83%, 62%) 100%);
 }
 
 #colorSlider::-webkit-slider-thumb {
