@@ -1,6 +1,7 @@
 interface Household {
     id: number,
     name: string,
+    members?: User[],
 }
 
 interface ContextValue {
@@ -27,4 +28,9 @@ interface NotAddedItem {
 interface Section {
     name: string,
     items: NotAddedItem[]
+}
+
+interface User {
+    username: string,
+    profile_picture: string
 }

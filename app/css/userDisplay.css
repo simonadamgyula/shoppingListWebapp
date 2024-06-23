@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Anek+Bangla:wght@100..800&display=swap');
+
+.userDisplay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: "Andada Pro", serif;
+
+    &:not(.noUser) {
+        background-color: rgba(0, 0, 0, 20%);
+        display: flex;
+        color: white;
+
+        & span {
+            margin-right: 10px;
+            line-height: 30px;
+        }
+
+        & img {
+            height: 30px;
+            width: 30px;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: rgba(0, 0, 0, 50%) 0px 0px 10px 0px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    &.noUser {
+        background-color: rgb(0, 0, 0);
+    }
+}

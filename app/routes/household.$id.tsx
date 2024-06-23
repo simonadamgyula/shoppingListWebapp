@@ -1,10 +1,8 @@
 import { LinksFunction, LoaderFunctionArgs, MetaFunction, redirect } from "@remix-run/node"
-import { useFetcher, useLoaderData } from "@remix-run/react";
+import { Link, useFetcher, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
-import { getHousehold, getItems } from "~/services/api.server";
+import { getHousehold, getHouseholdUsers, getItems, getUser } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
-
-import householdStylesheet from "../css/household.css?url";
 import Catalog from "~/components/Catalog";
 import { getCatalog, searchCatalog } from "~/services/catalog.server";
 import { useEffect, useRef, useState } from "react";
@@ -13,8 +11,16 @@ import ListItem from "~/components/ListItem";
 import React from "react";
 import { flushSync } from "react-dom";
 
+import householdStylesheet from "../css/household.css?url";
+import userDisplayStylesheet from "../css/userDisplay.css?url";
+import UserDisplay from "~/components/UserDisplay";
+import Members from "~/components/Members";
+
 export const links: LinksFunction = () => {
-    return [{ rel: "stylesheet", href: householdStylesheet }];
+    return [
+        { rel: "stylesheet", href: householdStylesheet },
+        { rel: "stylesheet", href: userDisplayStylesheet }
+    ];
 };
 
 export const meta: MetaFunction = () => {
@@ -38,16 +44,19 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     const items: Item[] | null = await getItems(session.session_id, id);
     if (items === null) return redirect("/");
 
+    const user = await getUser(session.session_id);
+    const members = await getHouseholdUsers(session.session_id, id);
+
     const url = new URL(request.url);
     const query = url.searchParams.get("query");
 
     const catalog = query ? searchCatalog(query) : getCatalog();
 
-    return { household, items, catalog };
+    return { household, items, catalog, user, members };
 }
 
 export default function Household() {
-    const { household, items, catalog } = useLoaderData<typeof loader>();
+    const { household, items, catalog, user, members } = useLoaderData<typeof loader>();
 
     const [areBoughtItems, setAreBoughtItems] = useState(false);
     const addItemFetcher = useFetcher({ key: `addItem-${household.id}` });
@@ -70,8 +79,17 @@ export default function Household() {
 
     return (
         <main>
-            <h1>{household.name}</h1>
+            <UserDisplay user={user} />
+            <h1>
+                <Link className="backArrow" to={"/"}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                        <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                    </svg>
+                </Link>
+                {household.name}
+            </h1>
             <div id="items">
+                <Members members={members} />
                 <h2>To buy</h2>
                 <div id="itemsInList">
                     {items.length !== 0 ? (items.map((item, index) => {

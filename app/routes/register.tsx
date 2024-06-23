@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, LinksFunction, LoaderFunctionArgs, MetaFunction, NodeOnDiskFile, TypedResponse, json, redirect, unstable_composeUploadHandlers, unstable_createFileUploadHandler, unstable_createMemoryUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
-import { Form, useFetcher, useSubmit } from "@remix-run/react";
+import { Form, Link, useFetcher, useSubmit } from "@remix-run/react";
 import { useEffect, useRef, useState } from "react";
 import { register } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
@@ -69,6 +69,12 @@ export default function Register() {
 
     return (
         <main>
+            <Link className="backArrow" to={"/"}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                    <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                </svg>
+            </Link>
+
             <h1>Register</h1>
 
             <label id="profile_pic">
@@ -114,6 +120,7 @@ export default function Register() {
                 >
                     Register
                 </button>
+                <p>Already have an account? <Link to={"/login"}>Log in</Link></p>
             </Form>
         </main>
     );

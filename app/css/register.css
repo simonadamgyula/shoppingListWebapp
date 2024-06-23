@@ -13,6 +13,18 @@ input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
 }
 
+.backArrow {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    cursor: pointer;
+
+    & svg {
+        height: 30px;
+        fill: white;
+    }
+}
+
 main {
     background-color: rgba(0, 0, 0, 20%);
     display: flex;
@@ -73,5 +85,14 @@ main {
         border-radius: 5px;
         margin-top: 20px;
         font-weight: bold;
+    }
+
+    p {
+        color: white;
+
+        & a {
+            color: white;
+            text-decoration: underline;
+        }
     }
 }

@@ -4,7 +4,7 @@ import { createHousehold } from "~/services/api.server";
 import invariant from "tiny-invariant";
 
 import householdAddStylesheet from "../css/householdAdd.css?url";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: householdAddStylesheet }];
@@ -45,6 +45,11 @@ export default function AddHousehold() {
 
     return (
         <div id="addHousehold">
+            <Link className="backArrow" to={"/"}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                    <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                </svg>
+            </Link>
             <h1 id="title">Add a household</h1>
             <h2>Create a new household</h2>
             <form id="addHouseholdForm" action="/household/add" method="post">

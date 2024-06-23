@@ -7,11 +7,16 @@ import HouseholdCard from "~/components/HouseholdCard";
 import { useEffect, useRef, useState } from "react";
 import Context from "~/components/Context";
 import React from "react";
+import UserDisplay from "~/components/UserDisplay";
 
 import indexStylesheet from "../css/index.css?url";
+import userDisplayStylesheet from "../css/userDisplay.css?url";
 
 export const links: LinksFunction = () => {
-    return [{ rel: "stylesheet", href: indexStylesheet }];
+    return [
+        { rel: "stylesheet", href: indexStylesheet }, 
+        { rel: "stylesheet", href: userDisplayStylesheet }
+    ];
 };
 
 export const meta: MetaFunction = () => {
@@ -34,8 +39,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function Index() {
     const { user, households } = useLoaderData<typeof loader>();
-
-    const submit = useSubmit();
 
     const [householdContext, setHouseholdContext] = useState<ContextValue | null>(null);
     const contextRef = useRef<HTMLDivElement>(null);
@@ -78,13 +81,7 @@ export default function Index() {
                     <p>{user ? "No households found" : "You are not logged in"}</p>
                 )}
             </div>
-            {user ? (
-                <Link to="/logout" id="logoutLink">Logout</Link>
-            ) : (
-                <Link to="/login" id="loginLink">Login</Link>
-            )}
-            <p>{user?.username}</p>
-            <img src={user?.profile_picture} alt="" />
+            <UserDisplay user={user} />
             {householdContext ? (
                 <Context
                     contextRef={contextRef}

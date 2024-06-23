@@ -91,3 +91,9 @@ export const itemSetBought = async (session_id: string, household_id: number, it
     const data = await sendRequest('/household/items/set_bought', 'POST', { session_id, household_id, item, bought: bought });
     return data;
 }
+
+export const getHouseholdUsers = async (session_id: string, household_id: number): Promise<User[] | null> => {
+    const data = await sendRequest('/household/get_users', 'POST', { session_id, household_id });
+    if (!data) return data;
+    return data.users;
+}
