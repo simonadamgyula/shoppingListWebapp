@@ -1,6 +1,6 @@
 import { json, type LoaderFunctionArgs, type MetaFunction } from "@remix-run/node";
 import { Link, useFetcher, useLoaderData, useSubmit } from "@remix-run/react";
-import { getHouseholds, getUser } from "~/services/api.server";
+import { getHouseholdUsers, getHouseholds, getUser } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
 import { LinksFunction } from "@remix-run/node";
 import HouseholdCard from "~/components/HouseholdCard";
@@ -11,11 +11,13 @@ import UserDisplay from "~/components/UserDisplay";
 
 import indexStylesheet from "../css/index.css?url";
 import userDisplayStylesheet from "../css/userDisplay.css?url";
+import membersStylesheet from "../css/householdMembers.css?url";
 
 export const links: LinksFunction = () => {
     return [
-        { rel: "stylesheet", href: indexStylesheet }, 
-        { rel: "stylesheet", href: userDisplayStylesheet }
+        { rel: "stylesheet", href: indexStylesheet },
+        { rel: "stylesheet", href: userDisplayStylesheet },
+        { rel: "stylesheet", href: membersStylesheet },
     ];
 };
 
@@ -33,8 +35,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
     const user = await getUser(auth.session_id);
     const households = await getHouseholds(auth.session_id);
+    console.log(households);
+    const householdWithMemberss = await Promise.all(households!.map(async (household) => {
+        const members = await getHouseholdUsers(auth.session_id, household.id);
+        return { ...household, members };
+    }));
 
-    return json({ user, households });
+    return json({ user, households: householdWithMemberss });
 }
 
 export default function Index() {
@@ -74,7 +81,7 @@ export default function Index() {
             <div id="households">
                 {households ? (
                     households.map((household) => (
-                        <HouseholdCard household={household} setContext={setHouseholdContext} key={household.id} />
+                        <HouseholdCard household={household as Household} setContext={setHouseholdContext} key={household.id} />
                     ))
 
                 ) : (

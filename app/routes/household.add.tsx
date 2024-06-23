@@ -5,6 +5,8 @@ import invariant from "tiny-invariant";
 
 import householdAddStylesheet from "../css/householdAdd.css?url";
 import { Link, useLoaderData } from "@remix-run/react";
+import { useRef } from "react";
+import Household from "./household.$id";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: householdAddStylesheet }];
@@ -23,11 +25,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     });
 
     const body = await request.formData();
-    const joinCode = body.get("joinCode") as string;
+    const household = body.get("householdName") as string;
+    const color = body.get("color") as string;
 
-    invariant(joinCode, "joinCode is required");
+    invariant(household, "joinCode is required");
 
-    const success = await createHousehold(session.session_id, joinCode);
+    const success = await createHousehold(session.session_id, household, parseInt(color));
 
     return success ? redirect("/") : redirect("/household/add")
 }
@@ -43,6 +46,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function AddHousehold() {
     useLoaderData();
 
+    const colorSliderRef = useRef<HTMLInputElement>(null);
+
     return (
         <div id="addHousehold">
             <Link className="backArrow" to={"/"}>
@@ -54,6 +59,17 @@ export default function AddHousehold() {
             <h2>Create a new household</h2>
             <form id="addHouseholdForm" action="/household/add" method="post">
                 <input type="text" id="householdName" name="householdName" placeholder="Household name" />
+                <input
+                    ref={colorSliderRef}
+                    type="range"
+                    name="color"
+                    id="colorSlider"
+                    min={0}
+                    max={360}
+                    defaultValue={0}
+                    onChange={() => {
+                        colorSliderRef.current!.style.setProperty("--hue", colorSliderRef.current!.value)
+                    }} />
                 <button type="submit">Create Household</button>
             </form>
             <h2>Join an existing household</h2>

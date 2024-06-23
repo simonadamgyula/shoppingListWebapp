@@ -1,4 +1,5 @@
 import { flushSync } from "react-dom";
+import Members from "./Members";
 
 export default function HouseholdCard({ household, setContext }: { household: Household, setContext: (context: ContextValue | null) => void }) {
     return (
@@ -7,8 +8,10 @@ export default function HouseholdCard({ household, setContext }: { household: Ho
             onClick={() => {
                 window.location.href = `/household/${household.id}`;
             }}
+            style={{ backgroundColor: `hsl(${household.color}, 83%, 62%)` }}
         >
             <h3>{household.name}</h3>
+            <Members members={household.members} />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 128 512"

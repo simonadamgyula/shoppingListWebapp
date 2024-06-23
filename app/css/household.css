@@ -15,18 +15,28 @@ main {
     box-sizing: border-box;
 }
 
-h1 {
-    font-size: 54px !important;
-    font-family: "Alfa Slab One", sans-serif;
-    color: rgba(255, 255, 255, 60%);
+.title {
     display: flex;
     flex-direction: row;
-    align-items: center;
 
-    & a svg {
-        height: 40px;
-        margin-right: 20px;
-        fill: rgba(255, 255, 255, 60%);
+    & h1 {
+        font-size: 54px !important;
+        font-family: "Alfa Slab One", sans-serif;
+        color: rgba(255, 255, 255, 60%);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        & a svg {
+            height: 40px;
+            margin-right: 20px;
+            fill: rgba(255, 255, 255, 60%);
+        }
+    }
+
+    & .householdMembers {
+        flex-grow: 2;
+        margin-left: 20px;
     }
 }
 

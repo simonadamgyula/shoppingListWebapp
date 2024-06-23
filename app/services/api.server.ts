@@ -55,8 +55,8 @@ export const joinHousehold = async (session_id: string, household_code: string):
     return data;
 }
 
-export const createHousehold = async (session_id: string, household_name: string): Promise<boolean> => {
-    const data = await sendRequest('/household/new', 'POST', { session_id, household_name });
+export const createHousehold = async (session_id: string, household_name: string, color: number): Promise<boolean> => {
+    const data = await sendRequest('/household/new', 'POST', { session_id, name: household_name, color });
     return data;
 }
 
@@ -68,7 +68,7 @@ export const leaveHousehold = async (session_id: string, household_id: number): 
 export const getHousehold = async (session_id: string, household_id: number): Promise<Household | null> => {
     const data = await sendRequest('/household/get', 'POST', { session_id, household_id });
     if (!data) return data;
-    return { name: data.household, id: household_id };
+    return { name: data.name, id: household_id, color: data.color };
 }
 
 export const getItems = async (session_id: string, household_id: number): Promise<Item[] | null> => {

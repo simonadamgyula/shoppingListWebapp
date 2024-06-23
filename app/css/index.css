@@ -48,6 +48,10 @@ main {
         height: 200px;
         background-color: #efaf4f;
         border-radius: 30px;
+        padding-bottom: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         &>h3 {
             font-family: "Andada Pro", serif;
@@ -56,6 +60,11 @@ main {
             color: white;
             margin: 14px 0 0 22px;
             text-transform: capitalize;
+        }
+
+        &>.householdMembers {
+            margin-left: 22px;
+            height: 45px;
         }
 
         &>.householdContext {

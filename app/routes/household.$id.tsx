@@ -10,16 +10,18 @@ import AddItemModal from "~/components/AddItemModal";
 import ListItem from "~/components/ListItem";
 import React from "react";
 import { flushSync } from "react-dom";
+import UserDisplay from "~/components/UserDisplay";
+import Members from "~/components/Members";
 
 import householdStylesheet from "../css/household.css?url";
 import userDisplayStylesheet from "../css/userDisplay.css?url";
-import UserDisplay from "~/components/UserDisplay";
-import Members from "~/components/Members";
+import membersStylesheet from "../css/householdMembers.css?url";
 
 export const links: LinksFunction = () => {
     return [
         { rel: "stylesheet", href: householdStylesheet },
-        { rel: "stylesheet", href: userDisplayStylesheet }
+        { rel: "stylesheet", href: userDisplayStylesheet },
+        { rel: "stylesheet", href: membersStylesheet },
     ];
 };
 
@@ -80,16 +82,18 @@ export default function Household() {
     return (
         <main>
             <UserDisplay user={user} />
-            <h1>
-                <Link className="backArrow" to={"/"}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                        <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-                    </svg>
-                </Link>
-                {household.name}
-            </h1>
-            <div id="items">
+            <div className="title">
+                <h1>
+                    <Link className="backArrow" to={"/"}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                            <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+                        </svg>
+                    </Link>
+                    {household.name}
+                </h1>
                 <Members members={members} />
+            </div>
+            <div id="items">
                 <h2>To buy</h2>
                 <div id="itemsInList">
                     {items.length !== 0 ? (items.map((item, index) => {

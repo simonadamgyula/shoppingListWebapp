@@ -1,6 +1,7 @@
 interface Household {
     id: number,
     name: string,
+    color: number,
     members?: User[],
 }
 

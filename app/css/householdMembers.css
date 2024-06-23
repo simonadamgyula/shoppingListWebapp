@@ -1,0 +1,17 @@
+.householdMembers {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    & .memberPfp {
+        position: absolute;
+        top: 50%;
+        height: 45px;
+        transform: translateY(-50%);
+        width: 45px;
+        border-radius: 22.5px;
+        outline: 2px solid #fff;
+        outline-offset: -2px;
+        object-fit: cover;
+    }
+}
