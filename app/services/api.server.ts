@@ -97,3 +97,14 @@ export const getHouseholdUsers = async (session_id: string, household_id: number
     if (!data) return data;
     return data.users;
 }
+
+export const checkHouseholdAdmin = async (session_id: string, household_id: number): Promise<boolean> => {
+    const data = await sendRequest('/household/check_admin', 'POST', { session_id, household_id });
+    if (!data) return data;
+    return data.is_admin;
+}
+
+export const editHousehold = async (session_id: string, household_id: number, name: string, color: number): Promise<boolean> => {
+    const data = await sendRequest('/household/update', 'POST', { session_id, household_id, new_name: name, new_color: color });
+    return data;
+}

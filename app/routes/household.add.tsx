@@ -6,7 +6,7 @@ import invariant from "tiny-invariant";
 import householdAddStylesheet from "../css/householdAdd.css?url";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useRef } from "react";
-import Household from "./household.$id";
+import Household from "./household.$id._index";
 
 export const links: LinksFunction = () => {
     return [{ rel: "stylesheet", href: householdAddStylesheet }];
