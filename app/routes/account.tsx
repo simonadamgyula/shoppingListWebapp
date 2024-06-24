@@ -140,7 +140,16 @@ export default function Account() {
                 </div>
                 <div>
                     <span>Delete your account: </span>
-                    <button>Delete</button>
+                    <button
+                        onClick={() => {
+                            submit({}, {
+                                method: "POST",
+                                action: "/account/delete"
+                            });
+                        }}
+                    >
+                        Delete
+                    </button>
                 </div>
             </div>
         </main>

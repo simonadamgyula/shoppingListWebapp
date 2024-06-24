@@ -123,3 +123,8 @@ export const kickMember = async (session_id: string, household_id: number, user_
     const data = await sendRequest('/household/kick_member', 'POST', { session_id, household_id, user_id });
     return data;
 }
+
+export const deleteAccount = async (session_id: string): Promise<boolean> => {
+    const data = await sendRequest('/user/delete', 'POST', { session_id });
+    return data;
+}

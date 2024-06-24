@@ -8,9 +8,9 @@
     padding: 10px;
     border-radius: 10px;
     font-family: "Andada Pro", serif;
+    background-color: rgba(0, 0, 0, 20%);
 
     &:not(.noUser) {
-        background-color: rgba(0, 0, 0, 20%);
         display: flex;
         color: white;
         cursor: pointer;
@@ -31,7 +31,13 @@
     }
 
     &.noUser {
-        background-color: rgb(0, 0, 0);
+        color: white;
+
+        & a {
+            color: white;
+            text-decoration: underline;
+            margin: 0 5px;
+        }
     }
 }
 

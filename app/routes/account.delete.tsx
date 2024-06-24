@@ -1,4 +1,5 @@
-import { ActionFunctionArgs, json } from "@remix-run/node";
+import { ActionFunctionArgs, json, redirect } from "@remix-run/node";
+import { deleteAccount } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -6,12 +7,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         failureRedirect: "/login",
     });
 
-    const result = await deleteUser(session.session_id);
+    const result = await deleteAccount(session.session_id);
 
+    if (result) return redirect("/logout");
     return json({ result });
-
 }
 
-function deleteUser(session_id: string) {
-    throw new Error("Function not implemented.");
+export default function DeleteAccount() {
+    return new Response(null, { status: 404 });
 }

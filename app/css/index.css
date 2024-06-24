@@ -43,6 +43,10 @@ main {
     gap: 70px;
     margin: 10px 0;
 
+    p {
+        color: white;
+    }
+
     & .household-card {
         position: relative;
         width: 350px;
