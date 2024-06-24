@@ -33,6 +33,11 @@ export const getUser = async (session_id: string): Promise<User | null> => {
     return data;
 }
 
+export const editUser = async (session_id: string, username: string, profile_picture: string): Promise<boolean> => {
+    const data = await sendRequest('/user/edit', 'POST', { session_id, username, profile_picture });
+    return data;
+}
+
 export const register = async (username: string, password: string, profile_picture: string): Promise<boolean> => {
     const data = await sendRequest('/user/new', 'POST', { username, password, profile_picture });
     return data;
