@@ -12,18 +12,12 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
     const body = await request.formData();
 
     const item = body.get("item") as string;
-    const quantityStr = body.get("quantity") as string;
+    const quantity = body.get("quantity") as string;
     const image = body.get("image") as string;
     invariant(item, "item is required");
-    invariant(quantityStr, "quantity is required");
+    invariant(quantity, "quantity is required");
 
-    console.log(image)
-
-    const quantity = parseInt(quantityStr.split(" ")[0]);
-    const measurement = quantityStr.split(" ")[1];
-
-
-    const response = await addItem(session.session_id, parseInt(params.id), { name: item, quantity: quantity, measurement, image });
+    const response = await addItem(session.session_id, parseInt(params.id), { name: item, quantity: quantity, image });
 
     return json({ response });
 }

@@ -23,7 +23,7 @@ export default function ListItem({ item, household }: { item: Item, household: H
         >
             <img src={image_src} alt={item.name} />
             <div className="item-name">{item.name}</div>
-            <div className="item-quantity">{item.quantity} {item.measurement}</div>
+            <div className="item-quantity">{item.quantity}</div>
         </div>
     )
 }

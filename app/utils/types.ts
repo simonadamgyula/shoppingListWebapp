@@ -13,8 +13,7 @@ interface ContextValue {
 
 interface Item {
     name: string,
-    quantity: number,
-    measurement: string,
+    quantity: string,
     image: string,
     bought?: boolean,
 }
