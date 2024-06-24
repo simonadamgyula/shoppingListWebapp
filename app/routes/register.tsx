@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, LinksFunction, LoaderFunctionArgs, MetaFunction, NodeOnDiskFile, TypedResponse, json, redirect, unstable_composeUploadHandlers, unstable_createFileUploadHandler, unstable_createMemoryUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
-import { Form, Link, useFetcher, useSubmit } from "@remix-run/react";
+import { Form, Link, useActionData, useFetcher, useSubmit } from "@remix-run/react";
 import { useEffect, useRef, useState } from "react";
 import { register } from "~/services/api.server";
 import { authenticator } from "~/services/auth.server";
@@ -43,10 +43,10 @@ export async function action({ request }: ActionFunctionArgs) {
     const password = formData.get("password") as string;
     const repassword = formData.get("repassword") as string;
 
-    if (password !== repassword) return new Response(null, { status: 400 });
+    if (password !== repassword) return json({ message: "Passwords do not match" });
 
     const result = await register(username, password, `/img/${file.name}`);
-    if (!result) return new Response(null, { status: 400 });
+    if (!result) return json({ message: "Username already exists" });
 
     let user = await authenticator.authenticate("user-pass", request, {
         failureRedirect: "/login",
@@ -61,11 +61,20 @@ export async function action({ request }: ActionFunctionArgs) {
 
 
 export default function Register() {
+    let error = useActionData<typeof action>();
+
     const imageRef = useRef<HTMLImageElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const formRef = useRef<HTMLFormElement>(null);
+    const errorRef = useRef<HTMLParagraphElement>(null);
 
     const submit = useSubmit();
+
+    function setError(message: string) {
+        error = { message };
+        errorRef.current!.classList.remove("hidden");
+        errorRef.current!.innerText = message;
+    }
 
     return (
         <main>
@@ -76,6 +85,8 @@ export default function Register() {
             </Link>
 
             <h1>Register</h1>
+
+            <p ref={errorRef} className={`error ${error ? "" : "hidden"}`}>{error && error.message}</p>
 
             <label id="profile_pic">
                 <img ref={imageRef} src="/img/placeholder.png" alt="" />
@@ -105,10 +116,16 @@ export default function Register() {
                     onClick={(e) => {
                         e.preventDefault();
 
-                        if (!inputRef.current?.files || !inputRef.current?.files[0]) return;
+                        if (!inputRef.current?.files || !inputRef.current?.files[0]) {
+                            setError("Please select a profile picture");
+                            return;
+                        };
                         let formData = new FormData(formRef.current!);
 
-                        if (formData.get("password") !== formData.get("repassword")) return;
+                        if (formData.get("password") !== formData.get("repassword")) {
+                            setError("Passwords need to match");
+                            return;
+                        };
 
                         formData.set("file", inputRef.current.files[0]);
 

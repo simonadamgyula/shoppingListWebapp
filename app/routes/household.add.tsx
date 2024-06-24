@@ -1,10 +1,10 @@
-import { ActionFunctionArgs, LinksFunction, LoaderFunctionArgs, MetaFunction, redirect } from "@remix-run/node";
+import { ActionFunctionArgs, LinksFunction, LoaderFunctionArgs, MetaFunction, json, redirect } from "@remix-run/node";
 import { authenticator } from "~/services/auth.server";
 import { createHousehold } from "~/services/api.server";
 import invariant from "tiny-invariant";
 
 import householdAddStylesheet from "../css/householdAdd.css?url";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useActionData, useLoaderData } from "@remix-run/react";
 import { useRef } from "react";
 import Household from "./household.$id._index";
 
@@ -28,11 +28,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const household = body.get("householdName") as string;
     const color = body.get("color") as string;
 
-    invariant(household, "joinCode is required");
+    if (!household || !color) return json({ message: "Missing household name or color" })
 
     const success = await createHousehold(session.session_id, household, parseInt(color));
 
-    return success ? redirect("/") : redirect("/household/add")
+    return success ? redirect("/") : json({ message: "Failed to create household" });
 }
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -45,6 +45,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function AddHousehold() {
     useLoaderData();
+    const error = useActionData<typeof action>();
 
     const colorSliderRef = useRef<HTMLInputElement>(null);
 
@@ -57,6 +58,7 @@ export default function AddHousehold() {
             </Link>
             <h1 id="title">Add a household</h1>
             <h2>Create a new household</h2>
+            {error && <p className="error">{error.message}</p>}
             <form id="addHouseholdForm" action="/household/add" method="post">
                 <input type="text" id="householdName" name="householdName" placeholder="Household name" maxLength={26} />
                 <input

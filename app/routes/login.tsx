@@ -12,7 +12,7 @@ export const links: LinksFunction = () => [
 
 export async function action({ request }: ActionFunctionArgs) {
     let user = await authenticator.authenticate("user-pass", request, {
-        failureRedirect: "/login",
+        failureRedirect: "/login"
     });
 
     let session = await getSession(request.headers.get("cookie"));
@@ -32,7 +32,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
     return json({ error }, {
         headers: {
-            'Set-Cookie': await commitSession(session) // You must commit the session whenever you read a flash
+            'Set-Cookie': await commitSession(session)
         }
     });
 };
@@ -55,6 +55,7 @@ export default function Login() {
             <h1>
                 Log in
             </h1>
+            {error && <p className="error">{error.message}</p>}
             <input type="text" name="username" id="usernameInput" autoComplete="nope" />
             <input type="password" name="password" id="passwordInput" autoComplete="nope" />
             <button type="submit">Log in</button>

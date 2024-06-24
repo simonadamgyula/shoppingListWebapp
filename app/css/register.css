@@ -96,3 +96,15 @@ main {
         }
     }
 }
+
+.error {
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    background-color: rgba(255, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+    &.hidden {
+        display: none;
+    }
+}
