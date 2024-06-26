@@ -11,4 +11,4 @@ I was not yet able to deploy the site anywhere, so here is how to deploy it.
 ### Web server
 1. Clone this repository.  
 2. Set your api url in the ```.env``` file.  
-3. Run ``` npm run build ``` than run ``` npm run start ``` to start the website.  
+3. Run ``` npm run dev ```. ( ``` npm run build ```, ``` npm run start ``` doesn't work for some reason, I will try to fix it, but avoid using it at the moment! )
