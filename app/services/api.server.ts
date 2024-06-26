@@ -1,4 +1,4 @@
-const api_url: string = process.env.API_URL ?? 'http://localhost:8001';
+const api_url: string = process.env.API_URL ?? 'localhost:8001';
 
 const sendRequest = async (url: string, method: string, body: any): Promise<any> => {
     try {
@@ -9,6 +9,8 @@ const sendRequest = async (url: string, method: string, body: any): Promise<any>
             },
             body: JSON.stringify(body)
         })
+
+        console.log(response);
 
         if (response.ok) {
             const data = await response.json();
