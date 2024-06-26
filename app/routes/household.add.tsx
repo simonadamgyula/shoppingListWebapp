@@ -15,7 +15,7 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = () => {
     return [
         { title: "ShopMate" },
-        { name: "description", content: "Welcome to Remix!" },
+
     ];
 };
 

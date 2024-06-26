@@ -2,13 +2,19 @@ import { ActionFunctionArgs, LoaderFunctionArgs, json, redirect } from "@remix-r
 import { Form, Link, useLoaderData } from "@remix-run/react";
 import { authenticator } from "~/services/auth.server";
 import { commitSession, getSession } from "~/services/session.server";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 
 import loginStylesheet from "../css/login.css?url";
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: loginStylesheet },
 ];
+
+export const meta: MetaFunction = () => {
+    return [
+        { title: "ShopMate" }
+    ];
+};
 
 export async function action({ request }: ActionFunctionArgs) {
     let user = await authenticator.authenticate("user-pass", request, {
@@ -56,8 +62,8 @@ export default function Login() {
                 Log in
             </h1>
             {error && <p className="error">{error.message}</p>}
-            <input type="text" name="username" id="usernameInput" autoComplete="nope" />
-            <input type="password" name="password" id="passwordInput" autoComplete="nope" />
+            <input type="text" name="username" id="usernameInput" autoComplete="nope" placeholder="Username" />
+            <input type="password" name="password" id="passwordInput" autoComplete="nope" placeholder="Password" />
             <button type="submit">Log in</button>
             <p>Don't have an account? <Link to={"/register"}>Register</Link></p>
         </Form>
