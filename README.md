@@ -1,5 +1,7 @@
 # ShopMate
 
+A web application made to help you, and others in your household (family), keep track of your shopping list easily. 
+
 ## Usage:
 
 I was not yet able to deploy the site anywhere, so here is how to deploy it.
